@@ -1,5 +1,7 @@
 # Audio-calibrated style knowledge
 
+> **English** | [简体中文](style-knowledge.zh-CN.md)
+
 The application's style knowledge — tempo, key, timbre character, groove idioms — is useful precisely because it is specific. The problem is that this knowledge is produced by a language model, and a model's sense of "this style is usually about 160 BPM and dark" is an *impression*, not a measurement. Impressions are systematically off, and a style library built entirely from impressions quietly degrades the output.
 
 This pipeline measures the claims against real audio and reconciles them.

@@ -1,5 +1,7 @@
 # Mutation operators
 
+> **English** | [简体中文](mutation-operators.zh-CN.md)
+
 Mutations are the mechanism by which a pattern is explored. They are deliberately **curated data**, not executable plugins: each operator is a declarative record interpreted by the mutation engine, so adding an operator cannot add code execution.
 
 ## Categories and counts

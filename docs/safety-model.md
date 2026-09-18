@@ -1,5 +1,7 @@
 # Safety model
 
+> **English** | [简体中文](safety-model.zh-CN.md)
+
 Generated code that executes in the browser is attacker-reachable input. This document describes the four independent layers that constrain it, in order of execution.
 
 ## Layer 1 — Static validation before execution

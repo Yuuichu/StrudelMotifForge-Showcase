@@ -1,5 +1,7 @@
 # Architecture
 
+> **English** | [简体中文](architecture.zh-CN.md)
+
 A single-page application with a deliberately small trusted core, plus one Node service that exists only to keep credentials out of the browser.
 
 ## Repository layout

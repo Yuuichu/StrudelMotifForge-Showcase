@@ -1,5 +1,7 @@
 # StrudelMotifForge
 
+> **English** | [简体中文](README.zh-CN.md)
+
 A browser-based workbench for **layered Strudel pattern composition**: turn a short creative brief into concepts, layered live-coding patterns, controlled mutations and explanations — with a sandbox that treats generated code as untrusted.
 
 ## Why I Built This
