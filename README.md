@@ -2,7 +2,6 @@
 
 A browser-based workbench for **layered Strudel pattern composition**: turn a short creative brief into concepts, layered live-coding patterns, controlled mutations and explanations — with a sandbox that treats generated code as untrusted.
 
-<!-- Hero image: see screenshots/README.md -->
 
 ## Why I Built This
 
@@ -60,7 +59,7 @@ Layer-marked Strudel pattern
 
 ## Demo
 
-A live demo needs a running dev server, which this showcase does not include. Screenshots are pending — see `screenshots/README.md`.
+A live demo needs a running dev server, which this showcase does not include.
 
 Selected source is in `selected-code/` (pattern validator, mutation orchestrator, role mapper, sandbox host). Style knowledge data is in `examples/` for inspection:
 `examples/game_combat.json` (a game-combat style library) and `examples/creative_operators/*.json` (the operator catalogue).
