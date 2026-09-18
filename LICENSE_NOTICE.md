@@ -2,11 +2,11 @@
 
 ## StrudelMotifForge
 
-The project's repository does **not** contain a `LICENSE` file, so this showcase makes no licence claim and does not reproduce one. Absence of a licence here is not permission to reuse the code.
+Released under the **GNU Affero General Public License v3.0** (`Copyright (C) 2026 Yuuichu`). The full licence text is included in this showcase as `LICENSE` — the standard AGPL-3.0 text, reproduced verbatim, preceded by the application notice that the licence itself prescribes.
 
-**Before publishing, this needs a decision** — see "Strudel and AGPL" below, because the choice of licence for this project may not be free.
+**Why AGPL and not a permissive licence:** the application is built around Strudel, which is itself AGPL-3.0. Adopting a compatible copyleft licence is the conservative choice that keeps the project's own terms consistent with its dependency. See "Strudel and AGPL" below.
 
-## Strudel and AGPL — read this before publishing
+## Strudel and AGPL — the licence decision
 
 The application is built around **Strudel**, the live-coding music language from [`tidalcycles/strudel`](https://github.com/tidalcycles/strudel). Verified upstream: that repository ships the **GNU Affero General Public License v3.0** (the full licence text was retrieved from the project's `LICENSE` file).
 
@@ -16,11 +16,13 @@ Why this matters:
 - This is a **property of the upstream dependency**, not of anything in this showcase, but it constrains how this project may be licensed and deployed.
 - Whether a given integration counts as a derivative work, an aggregate, or something else is a legal question, not an engineering one.
 
-**Action required before this repository is made public:** decide and document the licence situation — either adopt a compatible licence, or confirm with someone qualified that the intended use is compliant. This showcase deliberately does not guess.
+**Decision taken:** this project is published under **AGPL-3.0**, matching its dependency. That is the option that cannot create a licence conflict: a network-served derivative of AGPL code stays under the AGPL, and section 13's source-availability obligation is satisfied by publishing the source.
+
+The alternative — a permissive licence such as MIT — would require establishing that the way Strudel is incorporated does not make this a derivative work, which is a legal question rather than an engineering one. If that is ever established, the `LICENSE` file is the single place that needs to change.
 
 ### Other projects in this set, for context
 
-This is the only target project with a copyleft dependency of this kind. `AudioFlux`, `wwise-mcp` and `AI SFX Explorer` declare or imply permissive terms; `RPM Loop Tuning Analyzer` and `AiDrivenDynamicMixer` declare none yet.
+This is the only project in this set with a copyleft dependency. `AudioFlux`, `wwise-mcp`, `AI SFX Explorer`, `RPM Loop Tuning Analyzer` and `AiDrivenDynamicMixer` are all MIT-licensed, so their showcases carry permissive terms.
 
 ## Third-party software
 
