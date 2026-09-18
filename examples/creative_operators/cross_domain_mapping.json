@@ -1,0 +1,62 @@
+[
+  {
+    "domain": "underground_facility",
+    "description": "Underground industrial spaces — bunkers, tunnels, mechanical rooms, abandoned infrastructure",
+    "mappings": [
+      { "source": "ventilation system", "target": "low filtered noise with slow amplitude modulation — breathing texture" },
+      { "source": "broken relay / electrical failure", "target": "irregular metallic clicks at unpredictable intervals" },
+      { "source": "distant machinery", "target": "sub-bass drone with very slow filter modulation" },
+      { "source": "fluorescent light flicker", "target": "thin high-frequency rhythmic shimmer, irregular on/off pattern" },
+      { "source": "water dripping / condensation", "target": "sparse high-frequency ping with long reverb tail" },
+      { "source": "concrete wall resonance", "target": "short metallic hit with short, dark reverb — the room response" }
+    ]
+  },
+  {
+    "domain": "deep_ocean",
+    "description": "Abyssal ocean environments — extreme pressure, darkness, vast scale, alien life",
+    "mappings": [
+      { "source": "water pressure / depth", "target": "constant very low sub-bass drone — physical weight, felt not heard" },
+      { "source": "sonar ping", "target": "single high-frequency tone with very long reverb and delay — appears every 8-16 cycles" },
+      { "source": "whale song / biologics", "target": "slow pitch-bending sine waves — gliding between notes over 8+ cycles" },
+      { "source": "hydrothermal vents", "target": "filtered noise with slow amplitude pulses — organic, irregular breathing" },
+      { "source": "currents / water movement", "target": "stereo noise with very slow pan drift — the feeling of water moving past" },
+      { "source": "abyssal silence", "target": "long gaps (4-8 cycles) of near-silence between events — the weight of depth" }
+    ]
+  },
+  {
+    "domain": "ruined_cathedral",
+    "description": "Ancient, abandoned sacred spaces — vast reverb, decay, memory, the sublime",
+    "mappings": [
+      { "source": "cathedral reverb / space", "target": "extreme reverb on all elements (.room 0.9+) — the space IS the primary sound" },
+      { "source": "crumbling stone / decay", "target": "granular textures that slowly disintegrate — losing high frequencies first" },
+      { "source": "distant choir / memory of music", "target": "heavily filtered, barely audible chord swells — like music heard through centuries" },
+      { "source": "light through stained glass", "target": "slow filter sweeps that reveal and hide frequency bands — colored light metaphor" },
+      { "source": "wind through broken windows", "target": "high-frequency filtered noise with slow amplitude modulation" },
+      { "source": "bell / resonance of the space", "target": "single metallic hit with extremely long decay — the space's resonant frequency" }
+    ]
+  },
+  {
+    "domain": "insect_robot_boss",
+    "description": "Cybernetic insectoid entity — mechanical + organic, chittering, swarming, unpredictable",
+    "mappings": [
+      { "source": "chittering / mandibles", "target": "very fast, irregular rhythmic pattern — rapid staccato hits in unpredictable groupings" },
+      { "source": "mechanical wings / rotors", "target": "high-frequency rhythmic drone with pitch fluctuation — mechanical hum with organic wobble" },
+      { "source": "swarm movement", "target": "multiple layers of fast, panning percussion — the feeling of being surrounded" },
+      { "source": "exoskeleton / armor", "target": "hard, metallic percussion with very short decay — dry, close, aggressive" },
+      { "source": "organic fluids / hydraulics", "target": "sub-bass pulses with slow attack — wet, heavy, biological weight" },
+      { "source": "compound eyes / multiple perspectives", "target": "layered rhythmic patterns at slightly different speeds — polyrhythmic perception" }
+    ]
+  },
+  {
+    "domain": "data_center",
+    "description": "Server farms, digital infrastructure — humming, processing, endless repetition, cold precision",
+    "mappings": [
+      { "source": "server hum / cooling fans", "target": "constant mid-frequency drone with very subtle harmonic beating — the sound of electricity" },
+      { "source": "hard drive clicks / data access", "target": "very fast, precise rhythmic clicks — like sonar but faster, more regular" },
+      { "source": "data transmission / networking", "target": "high-frequency digital noise bursts — short, rhythmic packets of filtered noise" },
+      { "source": "error / system failure", "target": "sudden irregular pattern — stutter, skip, or unexpected silence breaking the regular pulse" },
+      { "source": "redundancy / mirroring", "target": "two identical layers with very slight delay between them — data replication as audio effect" },
+      { "source": "processing load / CPU spikes", "target": "periodic increase in rhythmic density and distortion — intensity spikes then returns to baseline" }
+    ]
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "constraint-op-01", "name": "No Kick Drum", "category": "constraint",
+    "description": "Generate a pattern without any kick drum or low-frequency impact sounds. The low end must be carried by bass, drone, or textural elements.",
+    "suitableForStyles": ["ambient_techno", "ambient"],
+    "usefulWhen": "Forcing creativity in the low end, breaking reliance on the kick as a structural element",
+    "risk": 3, "repair": "Ensure something provides low-frequency weight — a sub drone, filtered noise, or bass tone. No low end at all feels thin rather than creative.",
+    "intensityRange": [3, 5],
+    "strudelHints": ["Remove all s('bd') calls", "Replace kick with: low sine note every 4 cycles, filtered noise pulse, or metallic resonance with long decay"]
+  },
+  {
+    "id": "constraint-op-02", "name": "Only Sine Waves", "category": "constraint",
+    "description": "Every sound source must be a sine wave. No samples, no complex waveforms, no noise. Pure sinusoidal tones only.",
+    "suitableForStyles": ["ambient", "ambient_techno"],
+    "usefulWhen": "Exploring the essence of tone, creating extreme purity, focusing on frequency relationships and beating patterns",
+    "risk": 4, "repair": "Use multiple sine layers at different frequencies and gain levels. FM between sine waves for more complex timbres. The purity is the point.",
+    "intensityRange": [4, 5],
+    "strudelHints": ["All sounds: s('sine'). Use note() for pitch.", "Layer 5-8 sine waves at different frequencies for a harmonic series drone", "Beat frequencies between close sine tones create rhythm without percussion"]
+  },
+  {
+    "id": "constraint-op-03", "name": "Maximum 3 Sounds", "category": "constraint",
+    "description": "The entire pattern uses at most 3 distinct sound sources. Every layer must derive from one of these 3 sounds.",
+    "suitableForStyles": ["ambient_techno", "dark_techno", "ambient"],
+    "usefulWhen": "Forcing depth over breadth — make 3 sounds rich and evolving rather than 8 sounds thin and static",
+    "risk": 2, "repair": "Each of the 3 sounds must do heavy lifting through processing. Use filtering, reverb, gain modulation, and layering to create variety from limited sources.",
+    "intensityRange": [3, 5],
+    "strudelHints": ["Count distinct s() calls — maximum 3 different sample/sound names", "Use different .lpf(), .room(), .gain() settings on copies of the same source to create distinct layers"]
+  },
+  {
+    "id": "constraint-op-04", "name": "Silence as Primary Element", "category": "constraint",
+    "description": "More than 50% of the pattern duration must be silence or near-silence (gain < 0.05 on all layers). Sound events are rare and significant.",
+    "suitableForStyles": ["ambient", "ambient_techno"],
+    "usefulWhen": "Creating extreme tension, making every sound event meaningful, exploring the edge of audibility",
+    "risk": 5, "repair": "The few events that do occur must be carefully chosen and placed. Each one should feel significant. Use long reverbs so the space between events has content (decay tails).",
+    "intensityRange": [4, 5],
+    "strudelHints": ["Use .sometimesBy(0.05, ...) for extremely rare events", "Long .room(0.95) reverb tails fill the silence", "One event every 8-16 cycles, gaining significance through rarity"]
+  }
+]

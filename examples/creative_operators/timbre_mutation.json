@@ -1,0 +1,74 @@
+[
+  {
+    "id": "timbre-op-01", "name": "Distortion Cascade", "category": "timbre",
+    "description": "Gradually increase distortion/saturation on a layer over time. The sound degrades from clean to destroyed, creating tension and textural evolution.",
+    "suitableForStyles": ["dark_techno", "game_combat"],
+    "usefulWhen": "Building intensity over time, creating a sense of degradation or escalation",
+    "risk": 3, "repair": "Use parallel processing — blend clean and distorted signals. Too much distortion across all layers creates ear fatigue.",
+    "intensityRange": [2, 5],
+    "strudelHints": ["Layer multiple voices with increasing gain for perceived distortion", "Use .gain() modulation with high values on fast subdivisions"]
+  },
+  {
+    "id": "timbre-op-02", "name": "Spectral Shift", "category": "timbre",
+    "description": "Dramatically change the frequency content of a sound — open or close filters, emphasize different harmonics, shift the spectral center of gravity.",
+    "suitableForStyles": ["ambient_techno", "ambient", "jungle", "dark_techno"],
+    "usefulWhen": "A sound needs to evolve or transform without changing its rhythmic/melodic content",
+    "risk": 1, "repair": "The shift should happen over at least 4 cycles. Instant filter jumps are jarring unless that's the specific intent.",
+    "intensityRange": [1, 5],
+    "strudelHints": [".lpf() with slow modulation '<200 2000 500 3000 200>'.slow(16)", ".hpf() to remove low end for a 'thinning' effect", "Combine lpf and hpf for bandpass sweeps"]
+  },
+  {
+    "id": "timbre-op-03", "name": "Noise Injection", "category": "timbre",
+    "description": "Add or increase noise components in a sound. White/pink noise blended with tonal elements creates grit, air, or density.",
+    "suitableForStyles": ["ambient_techno", "dark_techno", "ambient", "game_combat"],
+    "usefulWhen": "A sound feels too pure/clean, needs grit or textural complexity",
+    "risk": 2, "repair": "Filter the noise to control which frequency range it occupies. Bandpass noise (300-2000Hz) for midrange grit. High-pass noise (>4kHz) for air.",
+    "intensityRange": [1, 4],
+    "strudelHints": ["Layer s('noise') with the tonal element at low gain", ".gain('<0 0.1 0.2 0.1 0>').slow(8) on the noise layer for pulsing texture", ".lpf() on noise to control harshness"]
+  },
+  {
+    "id": "timbre-op-04", "name": "Metallic Infection", "category": "timbre",
+    "description": "Replace or blend organic/warm timbres with metallic, ringing, industrial sounds. The sound becomes harder, colder, more mechanical.",
+    "suitableForStyles": ["dark_techno", "ambient_techno", "game_combat", "jungle"],
+    "usefulWhen": "The timbre feels too warm/organic/soft for the concept",
+    "risk": 3, "repair": "Don't apply to all layers — keep at least one warm element for contrast. Pure metallic timbre without warmth becomes fatiguing.",
+    "intensityRange": [2, 4],
+    "strudelHints": ["Use s('metal:1 metal:2 metal:3') instead of or layered with standard drum sounds", ".room(0.2) on metallic hits for a close, hard sound", "Layering: original sound at 50% gain + metallic version at 50%"]
+  },
+  {
+    "id": "timbre-op-05", "name": "Filter Morph", "category": "timbre",
+    "description": "Slowly transform a sound's timbre through continuous filter movement. The filter becomes the primary musical gesture.",
+    "suitableForStyles": ["ambient_techno", "ambient", "jungle"],
+    "usefulWhen": "Creating a sense of continuous evolution, revealing and hiding frequency content over time",
+    "risk": 1, "repair": "Use very slow modulation (slow(16) minimum). Faster filter movements become wah-wah effects rather than textural evolution.",
+    "intensityRange": [1, 3],
+    "strudelHints": ["s('noise*2').lpf('<100 4000 200 3000 150>').slow(48)", "Combine lpf and room changes for compound textural shifts"]
+  },
+  {
+    "id": "timbre-op-06", "name": "Soften Attack", "category": "timbre",
+    "description": "Reduce or remove the attack transient from percussive sounds. The sound becomes a texture rather than a hit — more pad-like, less percussive.",
+    "suitableForStyles": ["ambient_techno", "ambient"],
+    "usefulWhen": "Percussion elements are too prominent or sharp for the desired texture",
+    "risk": 1, "repair": "Combine with increased reverb to further diffuse the sound. The softened attack + long reverb transforms percussion into atmosphere.",
+    "intensityRange": [1, 3],
+    "strudelHints": [".decay(2).gain(0.15).room(0.8) — long decay, low gain, high reverb", "Remove the attack layer, keep only the decay/sustain"]
+  },
+  {
+    "id": "timbre-op-07", "name": "Register Shift", "category": "timbre",
+    "description": "Move a sound up or down by one or two octaves. Changes the sound's role in the mix: a bass becomes a lead, a high texture becomes a low drone.",
+    "suitableForStyles": ["ambient_techno", "dark_techno", "jungle", "ambient"],
+    "usefulWhen": "A sound needs to occupy a different frequency register or play a different musical role",
+    "risk": 2, "repair": "After shifting, adjust filtering and gain. An octave-up sound may need .lpf() to control harshness. An octave-down sound may need .hpf() to avoid subsonic mud.",
+    "intensityRange": [2, 3],
+    "strudelHints": [".fast(0.5) for octave down", ".fast(2) for octave up", "Use note() with higher/lower octave numbers: note('d1') → note('d2')"]
+  },
+  {
+    "id": "timbre-op-08", "name": "Frequency Modulation Drift", "category": "timbre",
+    "description": "Apply very slow frequency modulation (FM) to a sound, causing its harmonic content to gradually shift. Creates a sense of organic instability.",
+    "suitableForStyles": ["ambient_techno", "ambient", "dark_techno"],
+    "usefulWhen": "A static drone or tone needs organic, evolving movement",
+    "risk": 2, "repair": "Use very low modulation depth and very slow rate. The effect should be subliminal — the listener should sense change without hearing modulation.",
+    "intensityRange": [1, 2],
+    "strudelHints": ["Layer two very close frequencies with slight detuning for beating", ".lpf() with very slow modulation overlaid on the FM for compound evolution"]
+  }
+]

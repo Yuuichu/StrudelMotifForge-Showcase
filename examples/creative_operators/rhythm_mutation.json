@@ -1,0 +1,74 @@
+[
+  {
+    "id": "rhythm-op-01", "name": "Fracture", "category": "rhythm",
+    "description": "Break a regular rhythmic pattern into irregular fragments. Take a pattern and insert unexpected gaps, stutters, and displaced hits.",
+    "suitableForStyles": ["ambient_techno", "dark_techno", "jungle", "game_combat"],
+    "usefulWhen": "The rhythm feels too predictable or grid-locked",
+    "risk": 3, "repair": "If the fracture makes the rhythm unintelligible, keep the kick/bass hits on their original positions and only fracture the percussion layer.",
+    "intensityRange": [1, 5],
+    "strudelHints": ["Use struct() to create irregular patterns", "Insert '~' (rests) at unexpected positions", "Vary pattern length: not always 16 steps"]
+  },
+  {
+    "id": "rhythm-op-02", "name": "Ghost Notes", "category": "rhythm",
+    "description": "Add very quiet hits between the main accented hits. Ghost notes create a sense of continuous motion and organic flow without adding new distinct events.",
+    "suitableForStyles": ["dark_techno", "jungle", "game_combat"],
+    "usefulWhen": "The rhythm feels stiff, mechanical, or too sparse between main hits",
+    "risk": 2, "repair": "High-pass filter ghost notes to keep them from muddying the low end. Keep gain below 0.1 — they should be felt, not consciously heard.",
+    "intensityRange": [1, 3],
+    "strudelHints": ["Layer a second copy of the pattern at .gain(0.05) with .hpf(500)", "Use .sometimesBy(0.3, gain(0.08)) on fast subdivisions"]
+  },
+  {
+    "id": "rhythm-op-03", "name": "Density Wave", "category": "rhythm",
+    "description": "Gradually increase and decrease the density of rhythmic events over time. Like a tide — more hits, then fewer, then more again.",
+    "suitableForStyles": ["ambient_techno", "dark_techno", "jungle"],
+    "usefulWhen": "Adding long-form structural movement to a loop-based pattern",
+    "risk": 2, "repair": "The wave period should be at least 8 cycles. Faster waves feel like random density changes rather than a meaningful structural gesture.",
+    "intensityRange": [2, 4],
+    "strudelHints": ["Use .gain() modulation with long patterns: '<0.2 0.3 0.5 0.7 0.5 0.3 0.2>'.slow(16)", "Add/remove percussion layers over time via layer control system"]
+  },
+  {
+    "id": "rhythm-op-04", "name": "Swing Injection", "category": "rhythm",
+    "description": "Introduce swing/shuffle to a straight pattern, or remove swing from a swung pattern. Changes the entire feel of the groove without changing any notes.",
+    "suitableForStyles": ["dark_techno", "jungle", "game_combat"],
+    "usefulWhen": "The groove needs a different feel — looser and more organic, or tighter and more mechanical",
+    "risk": 2, "repair": "Apply swing to specific layers, not the entire pattern. Kick and sub-bass should usually stay straight while percussion and hi-hats get the swing.",
+    "intensityRange": [1, 3],
+    "strudelHints": ["Use struct() with off-grid positions", "Delay specific hits by small amounts using .delay() with very short times", "Layer swung and straight versions of the same pattern"]
+  },
+  {
+    "id": "rhythm-op-05", "name": "Velocity Sculpting", "category": "rhythm",
+    "description": "Dramatically vary the gain/velocity of individual hits to create accents, ghost notes, and dynamic shape. Instead of all hits at the same level, create a hierarchy of emphasis.",
+    "suitableForStyles": ["jungle", "game_combat", "ambient_techno"],
+    "usefulWhen": "The pattern lacks dynamic shape — all hits feel equally important",
+    "risk": 1, "repair": "Maintain at least 20% of hits at full velocity to anchor the rhythm. The quietest hits should be at 5-10% of full.",
+    "intensityRange": [1, 4],
+    "strudelHints": ["Use gain patterns: .gain('<0.8 0.1 0.3 0.5 0.1 0.7 0.2 0.4>')", "Layer the same sound at different gain levels for deliberate accent patterns"]
+  },
+  {
+    "id": "rhythm-op-06", "name": "Stochastic Variation", "category": "rhythm",
+    "description": "Use probability to create organic, non-repeating variation in rhythmic patterns. Each cycle is slightly different, but the overall groove identity remains.",
+    "suitableForStyles": ["ambient_techno", "dark_techno", "jungle", "game_combat"],
+    "usefulWhen": "The pattern is loop-based and needs variation without structural changes",
+    "risk": 2, "repair": "Keep probability low (0.1-0.25). Apply to secondary hits, not primary kick/snare. The core identity must survive the randomness.",
+    "intensityRange": [1, 3],
+    "strudelHints": [".sometimesBy(0.2, fast(2)) for occasional double-time", ".sometimesBy(0.15, gain(1.5)) for random accents", ".sometimesBy(0.1, struct('x ~ x ~')) for fill injections"]
+  },
+  {
+    "id": "rhythm-op-07", "name": "Polyrhythm Layer", "category": "rhythm",
+    "description": "Add a layer that plays in a different time signature or subdivision than the main pattern (e.g., 3 against 4, 5 against 4). Creates complex, shifting rhythmic relationships.",
+    "suitableForStyles": ["jungle", "dark_techno", "game_combat"],
+    "usefulWhen": "The rhythm needs complexity beyond what a single grid can provide",
+    "risk": 4, "repair": "Keep the polyrhythm layer sparse and quiet — it should create texture, not confusion. The main groove must remain clearly dominant.",
+    "intensityRange": [2, 4],
+    "strudelHints": ["Use .fast(0.75) for 3-against-4 feel", "Use .fast(1.25) for 5-against-4", "Layer a pattern at a different cycle length using .slow() or .fast()"]
+  },
+  {
+    "id": "rhythm-op-08", "name": "Silence as Rhythm", "category": "rhythm",
+    "description": "Use deliberate, strategic silence — removing hits that the listener expects. The gaps become rhythmic events themselves.",
+    "suitableForStyles": ["ambient_techno", "dark_techno", "ambient"],
+    "usefulWhen": "The pattern feels too busy or predictable — silence can be more powerful than another hit",
+    "risk": 3, "repair": "Remove hits from secondary layers first. Never remove the primary kick on beat 1 unless the concept specifically calls for disorientation.",
+    "intensityRange": [2, 5],
+    "strudelHints": ["Replace hits with rests in struct()", "Remove entire layers for 4-8 cycle sections", "Use .gain('<1 0>') to rhythmically mute elements"]
+  }
+]

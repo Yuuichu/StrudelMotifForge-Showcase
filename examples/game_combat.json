@@ -1,0 +1,468 @@
+{
+  "displayName": "Game Combat",
+  "description": "State changes, layering, threat escalation, intensity gating. Music that responds to gameplay states — from stealth to combat to victory, all within the same musical DNA.",
+  "version": "1.0.0",
+  "status": "draft",
+  "defaultTempo": {
+    "min": 90,
+    "max": 160,
+    "default": 120
+  },
+  "parentStyle": null,
+  "relatedStyles": [
+    "dark_techno",
+    "industrial",
+    "boss_battle"
+  ],
+  "styleDNA": {
+    "coreIdentity": [
+      "Music must support gameplay states — exploration, tension, combat, resolution — without jarring transitions between them",
+      "Intensity is gated — the music should be able to smoothly transition between 3-5 intensity levels",
+      "Loopability is essential — music must cycle seamlessly, with variation that doesn't sound repetitive over extended listening",
+      "Layering is the primary structural tool — add/remove layers to change intensity without changing the core pattern",
+      "The player's actions determine the music — not the other way around"
+    ],
+    "creativeFocus": [
+      "Vertical layering — 5-8 layers that can be independently muted/unmuted for real-time intensity changes",
+      "Loop fatigue prevention — techniques to keep a looping pattern interesting over 10+ minutes",
+      "Threat signaling — musical cues that communicate danger level without being distracting",
+      "Transition smoothness — crossfading between intensity states without audible seams",
+      "Hybrid palette — organic + synthetic, acoustic + electronic, real + unreal"
+    ],
+    "commonMaterials": [
+      "Percussion — ranging from sparse (stealth) to dense (combat), often with ethnic/world elements",
+      "Synth bass — for weight and threat, often distorted for high-intensity states",
+      "Orchestral elements (hybrid) — string stutters, brass stabs, processed orchestral textures",
+      "Drones — constant low texture for tension, can swell for threat escalation",
+      "Rhythmic pulses — short, percussive synth hits that create forward drive"
+    ],
+    "arrangementLogic": [
+      "Vertical arrangement — all layers share the same cycle length, intensity changes by adding/removing layers",
+      "Intensity levels: stealth (2-3 layers), tension (3-4 layers), combat_low (4-5 layers), combat_high (5-7 layers), climax (all layers)",
+      "Each intensity level adds specific layer types: stealth adds drum + drone, tension adds bass + pulse, combat adds full percussion + synth",
+      "Loop length: 4-8 cycles standard, with micro-variation to prevent fatigue"
+    ],
+    "grooveLogic": [
+      "Rhythm is the primary intensity driver — more percussion = higher intensity",
+      "Combat states use driving, forward-momentum rhythms",
+      "Stealth states use sparse, irregular percussion or none at all",
+      "Tension states use rhythmic pulses without full percussion — the 'about to engage' feel"
+    ],
+    "timbreLogic": [
+      "Dark, aggressive, but not harsh — the player needs to hear game audio clearly",
+      "Low-mid focus (100-500Hz) for weight and threat",
+      "High-frequency content is controlled — hi-hats, shakers, and high percussion should not mask game sound effects",
+      "Distortion increases with intensity — clean in stealth, heavily processed in combat"
+    ],
+    "harmonicLogic": [
+      "Dark modes — phrygian, locrian, harmonic minor",
+      "Pedal tones — a constant low note with changing harmonies above",
+      "No complex chord progressions — 1-2 chords, mostly drones with moving inner voices",
+      "Tritone intervals for threat and unease"
+    ],
+    "spatialLogic": [
+      "Mono compatibility is important — many players use TV/monitor speakers",
+      "Width increases with intensity — narrow and focused for stealth, wide for combat",
+      "Bass and kick always centered for impact"
+    ],
+    "energyCurve": [
+      "The energy curve follows gameplay, not musical structure",
+      "Ability to transition between any two intensity levels within 1-2 cycles",
+      "Peak energy reserved for boss fights and climactic moments",
+      "Recovery states (post-combat) should release tension without losing the dark atmosphere"
+    ]
+  },
+  "gestureLibrary": [
+    {
+      "id": "gc-g-01",
+      "name": "Layer Stack for Intensity",
+      "category": "structure",
+      "description": "Build a vertical stack of 5-8 layers where each layer represents an intensity threshold. Layers can be toggled in real-time to match gameplay state. The core pattern stays the same — only density changes.",
+      "useWhen": [
+        "Need dynamic music that responds to gameplay",
+        "Multiple intensity levels required",
+        "Looping music that needs variation"
+      ],
+      "avoidWhen": [
+        "Linear/non-looping music needed",
+        "Only one intensity level required"
+      ],
+      "risk": 1,
+      "repair": "Ensure each layer works in every possible combination. Test all layer permutations. The 'all layers' state must not clip or become muddy.",
+      "strudelHints": [
+        "// Build all layers in one stack(). Use layer markers for game engine to toggle. Each layer is additive — they should all work together."
+      ]
+    },
+    {
+      "id": "gc-g-02",
+      "name": "Threat Escalation Pulse",
+      "category": "rhythm",
+      "description": "A rhythmic element that increases in speed and intensity as threat level rises. Starts as a slow pulse (1 hit per 2 cycles), escalates to rapid stutter (4-8 hits per cycle) at maximum threat.",
+      "useWhen": [
+        "Signaling increasing danger",
+        "Building tension before combat",
+        "Transitioning between intensity levels"
+      ],
+      "avoidWhen": [
+        "The threat level is static",
+        "Stealth gameplay requires silence"
+      ],
+      "risk": 2,
+      "repair": "The escalation must be smooth — sudden speed changes are jarring. Use gradual .fast() or .slow() over 4-8 cycles.",
+      "strudelHints": [
+        "// Low threat: s('metal:1').gain(0.2).slow(4)\n// Medium threat: s('metal:1').gain(0.3).slow(2)\n// High threat: s('metal:1').gain(0.4)\n// Maximum: s('metal:1').gain(0.5).fast(2)"
+      ]
+    },
+    {
+      "id": "gc-g-03",
+      "name": "Loop Fatigue Prevention",
+      "category": "structure",
+      "description": "Techniques to keep a 4-8 cycle loop interesting over 10+ minutes of gameplay. Micro-variation, stochastic variation, and layer rotation keep the loop fresh without breaking the loop structure.",
+      "useWhen": [
+        "Any looping game music",
+        "Extended gameplay sequences",
+        "Background music for exploration"
+      ],
+      "avoidWhen": [
+        "The loop plays for <2 minutes",
+        "Linear music sequence"
+      ],
+      "risk": 2,
+      "repair": "Use .sometimesBy() on secondary elements to create variation. Rotate which percussion elements are playing. Slightly vary filter settings. Never change the core rhythm or harmonic structure — only the details.",
+      "strudelHints": [
+        "// Variation technique: use .sometimesBy(0.15, ...) on secondary percussion, .lpf() with very slow modulation '<800 1200 800>'.slow(24) for subtle timbral shifts."
+      ]
+    },
+    {
+      "id": "gc-g-04",
+      "name": "Combat Drop",
+      "category": "structure",
+      "description": "The transition from tension/stealth to full combat. All combat layers activate within 1-2 cycles. A distinct musical 'hit' (orchestral impact, synth stab, drum fill) marks the transition.",
+      "useWhen": [
+        "Entering combat from exploration/tension",
+        "Boss fight initiation",
+        "Major threat escalation moment"
+      ],
+      "avoidWhen": [
+        "Stealth gameplay where sudden noise would be detrimental",
+        "Transitions should be subtle and unnoticeable"
+      ],
+      "risk": 2,
+      "repair": "The combat drop should feel powerful but not cheap. Use a low-frequency impact (not a high-frequency sting) for weight. Layer a short drum fill to bridge the transition.",
+      "strudelHints": [
+        "// Sting layer (triggered once at transition): s('metal:2').gain(0.7).room(0.3).decay(2).once()\n// Then combat layers fade in over 1 cycle"
+      ]
+    },
+    {
+      "id": "gc-g-05",
+      "name": "Hybrid Percussion Layer",
+      "category": "rhythm",
+      "description": "Combine orchestral percussion (taikos, frame drums) with electronic percussion (industrial hits, processed samples). The hybrid approach creates a unique, un-placeable sound — neither fully acoustic nor fully electronic.",
+      "useWhen": [
+        "Need distinctive percussion identity",
+        "Game has fantasy/sci-fi hybrid setting",
+        "Standard drum kits sound too 'real world'"
+      ],
+      "avoidWhen": [
+        "The game setting is strictly realistic or strictly futuristic"
+      ],
+      "risk": 1,
+      "repair": "Process the acoustic elements with electronic techniques (distortion, filtering, reverb) so the hybrid blend is seamless.",
+      "strudelHints": [
+        "// Layer acoustic-style and electronic percussion in separate layers. Process acoustic hits with .lpf().gain() modulation. Use .room() differently on each."
+      ]
+    },
+    {
+      "id": "gc-g-06",
+      "name": "Tension Drone",
+      "category": "timbre",
+      "description": "A low, dark drone that gradually increases in presence during tension states. The drone may incorporate very slow beating patterns, subtle distortion increases, or filter openings that signal rising danger.",
+      "useWhen": [
+        "Tension/pre-combat states",
+        "Exploration in dangerous areas",
+        "Signaling hidden threats"
+      ],
+      "avoidWhen": [
+        "Comfortable/safe areas",
+        "Post-combat recovery"
+      ],
+      "risk": 1,
+      "repair": "The drone should never become foreground — it's a subliminal signal. If players consciously notice it, it's too loud.",
+      "strudelHints": [
+        "note('d1 a1').s('sine').gain(0.15).lpf(200).room(0.6).slow(16) // Deep tension drone"
+      ]
+    },
+    {
+      "id": "gc-g-07",
+      "name": "Post-Combat Release",
+      "category": "structure",
+      "description": "After combat ends, the music doesn't immediately return to exploration — it passes through a brief 'release' state. Layers drop away, reverb increases, the remaining elements are sparse and atmospheric.",
+      "useWhen": [
+        "Exiting combat state",
+        "After a boss defeat",
+        "Transition to exploration or narrative moment"
+      ],
+      "avoidWhen": [
+        "Combat immediately re-engages",
+        "The scene requires maintained tension"
+      ],
+      "risk": 2,
+      "repair": "The release should last 2-4 cycles. Keep the bass drone but reduce gain. Increase reverb on remaining elements. Remove all percussion except maybe a very sparse kick.",
+      "strudelHints": [
+        "// Mute combat layers, keep drone, add reverb to remaining elements, reduce gain over 4 cycles."
+      ]
+    },
+    {
+      "id": "gc-g-08",
+      "name": "Stealth Pulse",
+      "category": "rhythm",
+      "description": "An extremely sparse, quiet rhythmic element for stealth states. 1-2 hits per cycle at most. The pulse suggests a heartbeat — the player character's tension made audible.",
+      "useWhen": [
+        "Stealth gameplay",
+        "Sneaking/infiltration sequences",
+        "Low-intensity exploration in dangerous areas"
+      ],
+      "avoidWhen": [
+        "Action/combat states",
+        "Safe/peaceful areas"
+      ],
+      "risk": 1,
+      "repair": "Keep the pulse very quiet. It should be felt as tension, not heard as music. Use low-frequency sounds (low tom, muted kick, sub pulse).",
+      "strudelHints": [
+        "s('bd').gain(0.15).lpf(100).room(0.2).struct('x ~ ~ ~ ~ ~ ~ ~ x ~ ~ ~ ~ ~ ~ ~') // Slow heartbeat pulse"
+      ]
+    }
+  ],
+  "antiCliches": [
+    {
+      "id": "gc-ac-01",
+      "cliche": "Generic orchestral 'epic' percussion loop",
+      "symptom": "The same taiko + ostinato strings + braaam formula used in every AAA game trailer. This signals 'generic game music' immediately.",
+      "severity": "high",
+      "target": "concept",
+      "repair": "Develop a distinctive percussion identity for this specific game. Combine at least one unusual element (processed found sound, ethnic instrument, synthetic texture) with traditional percussion to create a unique hybrid palette.",
+      "suggestedOperators": [
+        "rhythm-op-01",
+        "rhythm-op-02",
+        "timbre-op-03"
+      ]
+    },
+    {
+      "id": "gc-ac-02",
+      "cliche": "Static loop with no variation",
+      "symptom": "The same 4-cycle loop plays unchanged for the entire gameplay sequence. Players will notice the repetition within 2-3 minutes and it becomes annoying.",
+      "severity": "high",
+      "target": "structure",
+      "repair": "Add at least 3 layers of micro-variation: filter modulation, percussion variation (.sometimesBy()), and occasional extra hits. The loop's core identity stays the same but the surface details are constantly shifting.",
+      "suggestedOperators": [
+        "rhythm-op-06",
+        "structure-op-06",
+        "timbre-op-05"
+      ]
+    },
+    {
+      "id": "gc-ac-03",
+      "cliche": "Orchestral-only palette",
+      "symptom": "Using only orchestral instruments (strings, brass, percussion) without any electronic or processed elements. This limits the game's sonic identity to 'movie music'.",
+      "severity": "medium",
+      "target": "timbre",
+      "repair": "Blend in at least 2 electronic/synthetic elements: synth bass, processed textures, industrial percussion, or heavily processed samples. The hybrid approach creates a more distinctive and game-appropriate sound.",
+      "suggestedOperators": [
+        "timbre-op-03",
+        "timbre-op-04",
+        "timbre-op-01"
+      ]
+    },
+    {
+      "id": "gc-ac-04",
+      "cliche": "Sudden music cut on state change",
+      "symptom": "Music abruptly stops or changes when gameplay state changes, creating jarring transitions. This breaks immersion and signals 'this is just background music'.",
+      "severity": "high",
+      "target": "structure",
+      "repair": "Crossfade between intensity states over at least 1 cycle. Keep at least one element constant across all states (usually the drone or harmonic foundation) as a 'through-line'.",
+      "suggestedOperators": [
+        "structure-op-05"
+      ]
+    },
+    {
+      "id": "gc-ac-05",
+      "cliche": "Combat music that overpowers game audio",
+      "symptom": "Full-frequency, maximally dense combat music that masks important game audio cues (footsteps, enemy sounds, UI feedback).",
+      "severity": "high",
+      "target": "code",
+      "repair": "Carve out frequency space for game audio. Low-pass combat music below 100Hz for sub-bass game effects. Create a 'notch' around 1-3kHz for dialogue and UI sounds. Combat intensity should come from rhythmic density and timbral aggression, not sheer volume.",
+      "suggestedOperators": [
+        "timbre-op-05",
+        "space-op-03"
+      ]
+    }
+  ],
+  "crossStyleBridges": [
+    {
+      "id": "gc-bridge-01",
+      "withStyle": "dark_techno",
+      "keepFromBase": "Intensity gating, vertical layering, loop structure",
+      "borrowFromOther": "Industrial percussion palette, hypnotic repetition, distortion/texture as intensity driver",
+      "avoid": "Don't let the techno influence create a dance-music feel. The groove should serve tension and combat, not dancing. Avoid four-on-the-floor kick patterns.",
+      "resultIdea": "Industrial combat music — dark, mechanical, relentlessly driving. Percussion is the primary intensity driver, with layers of metallic hits, distorted pulses, and sub-bass weight building through the intensity levels.",
+      "usefulWhen": [
+        "Sci-fi/industrial game setting",
+        "Need more aggressive, less orchestral palette",
+        "Boss fight music"
+      ],
+      "exampleConcept": "Mech facility infiltration — stealth state: distant industrial pulses, metallic echoes; tension: rhythmic machinery sounds emerge, sub-bass starts; combat: full mechanical assault, distorted impacts, relentless percussion drive"
+    },
+    {
+      "id": "gc-bridge-02",
+      "withStyle": "jungle",
+      "keepFromBase": "Layered intensity system, dark harmonic palette",
+      "borrowFromOther": "Break slicing techniques for percussion variation, sub-bass weight, dub delay for spatial depth",
+      "avoid": "Keep tempo moderate (100-140 BPM) — jungle tempos (>150) are too fast for most game combat. Use break techniques at moderate speeds.",
+      "resultIdea": "High-intensity combat with jungle-inspired break manipulation — rapid percussion variation at moderate tempos, deep sub-bass for impact, dub-inspired spatial effects for otherworldly atmosphere.",
+      "usefulWhen": [
+        "Fast-paced combat",
+        "Need extreme percussion variation",
+        "Sci-fi or dystopian setting"
+      ],
+      "exampleConcept": "Cybernetic assault — break-like percussion patterns at 130 BPM, sliced and rearranged in real-time, sub-bass impacts on major hits, the rhythm constantly shifting to match combat intensity"
+    },
+    {
+      "id": "gc-bridge-03",
+      "withStyle": "ambient",
+      "keepFromBase": "Drone foundation, dark tension",
+      "borrowFromOther": "Extreme spatial depth, very slow textural evolution, foreground/background ambiguity, near-silence as tension tool",
+      "avoid": "Don't let the ambient influence remove the rhythmic drive. Stealth states can be ambient-like but tension and combat states must retain forward momentum.",
+      "resultIdea": "Stealth music with genuine ambient depth — exploration states that are musically interesting in their own right, not just 'the quiet part before combat'. Tension builds through textural evolution rather than rhythmic escalation.",
+      "usefulWhen": [
+        "Stealth-focused game",
+        "Exploration segments need atmospheric depth",
+        "Horror/suspense atmosphere"
+      ],
+      "exampleConcept": "Deep station infiltration — exploration: vast, dark ambient textures, distant mechanical sounds, the station breathing; tension: textures slowly compress, filter openings reveal hidden frequencies, the silence between events becomes threatening"
+    }
+  ],
+  "strudelIdioms": [
+    {
+      "id": "gc-si-01",
+      "functionName": "stack()",
+      "useCase": "The vertical layering tool. 5-8 layers representing intensity levels. Layers must be designed to work together in any combination.",
+      "example": "stack(\n  // Stealth layers (always on)\n  s('noise').gain(0.05).room(0.9).lpf(200),\n  note('d1').s('sine').gain(0.15).lpf(80),\n  // Tension adds\n  s('metal:1').gain(0.2).room(0.3),\n  // Combat adds\n  s('bd').gain(0.6)...\n)",
+      "risk": "Medium — must test all layer combinations for phase issues and clipping"
+    },
+    {
+      "id": "gc-si-02",
+      "functionName": "setcpm()",
+      "useCase": "Tempo. Game combat: 100-140 CPM. Faster = more intense but less weight. Choose tempo that works for both low and high intensity states.",
+      "example": "setcpm(120)",
+      "risk": "Low"
+    },
+    {
+      "id": "gc-si-03",
+      "functionName": "sometimesBy()",
+      "useCase": "Loop fatigue prevention. Apply to secondary percussion, filter modulation, extra hits. Probability 0.1-0.2 for subtle variation.",
+      "example": "s('metal:1').sometimesBy(0.15, fast(2)) // Occasional double-time",
+      "risk": "Low — keep probability low to maintain loop coherence"
+    },
+    {
+      "id": "gc-si-04",
+      "functionName": "struct()",
+      "useCase": "For creating specific rhythmic patterns. Combat music benefits from precise, irregular rhythms — not simple grids.",
+      "example": "s('bd').struct('x ~ ~ x ~ x ~ ~ ~ x ~ x ~ ~ x ~')",
+      "risk": "Low"
+    },
+    {
+      "id": "gc-si-05",
+      "functionName": "lpf() / hpf()",
+      "useCase": "Filter for intensity control and frequency management. Lower lpf values for stealth (200-500Hz), higher for combat (1000-4000Hz). Use hpf to carve space for game audio.",
+      "example": ".lpf(300) // Stealth — dark and muffled\n.lpf(3000) // Combat — open and aggressive",
+      "risk": "Low"
+    },
+    {
+      "id": "gc-si-06",
+      "functionName": "gain()",
+      "useCase": "Layer balancing for intensity. Stealth layers: 0.05-0.15. Tension layers: 0.15-0.3. Combat layers: 0.3-0.7. Never exceed 0.95 total.",
+      "example": ".gain(0.1) // Stealth element\n.gain(0.5) // Combat kick",
+      "risk": "Low — total gain must stay below 1.0"
+    },
+    {
+      "id": "gc-si-07",
+      "functionName": "room()",
+      "useCase": "Spatial depth. Low room for combat (0.1-0.3) to maintain punch. Medium room for tension (0.3-0.6). High room for stealth (0.6-0.9) for atmosphere.",
+      "example": ".room(0.2) // Combat kick\n.room(0.8) // Stealth atmosphere",
+      "risk": "Low"
+    },
+    {
+      "id": "gc-si-08",
+      "functionName": "note()",
+      "useCase": "For pitched elements. Dark modes (phrygian, locrian). Pedal tones with moving inner voices. No chord progressions.",
+      "example": "note('d1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ f1 ~ ~ ~').s('sawtooth').lpf(200).gain(0.3)",
+      "risk": "Low — keep harmonic language simple"
+    },
+    {
+      "id": "gc-si-09",
+      "functionName": "fast() / slow()",
+      "useCase": "Intensity modulation. .fast() for combat fills and urgency. .slow() for stealth and tension states.",
+      "example": "s('metal:1').slow(4) // Stealth\ns('metal:1').fast(2) // Combat fill",
+      "risk": "Low"
+    },
+    {
+      "id": "gc-si-10",
+      "functionName": "jux()",
+      "useCase": "Stereo width for combat intensity. Use on synth and percussion layers to increase perceived width during combat states.",
+      "example": "s('noise').gain(0.15).lpf(2000).jux(rev)",
+      "risk": "Medium — test mono compatibility"
+    }
+  ],
+  "examplePatterns": [
+    {
+      "id": "gc-ex-01",
+      "title": "Multi-Intensity Combat System",
+      "tags": [
+        "starter",
+        "layered",
+        "adaptive"
+      ],
+      "code": "setcpm(120)\nstack(\n  // STEALTH BASE (always on)\n  note('d1 d1 ~ ~ d1 ~ ~ ~').s('sine').gain(0.15).lpf(100).room(0.5),\n  s('noise').gain(0.04).room(0.9).lpf(300).slow(24),\n  // TENSION LAYER (adds for tension+)\n  s('metal:1').gain(0.2).room(0.3).struct('~ x ~ ~ ~ x ~ ~ ~ x ~ ~ ~ ~ x ~'),\n  note('d2 ~ ~ f2 ~ d2 ~ ~').s('sawtooth').lpf(400).gain(0.2).room(0.3),\n  // COMBAT LOW (adds for combat+)\n  s('bd').gain(0.6).room(0.15).struct('x ~ ~ x ~ x ~ ~ x ~ ~ x ~ ~ x ~'),\n  // COMBAT HIGH (adds for full combat)\n  s('metal:2 metal:3').gain(0.35).room(0.2).struct('x x ~ x ~ x x ~ x x ~ x ~ x ~ x'),\n  s('noise').gain(0.08).lpf(2000).hpf(500).room(0.2)\n)",
+      "whyUseful": "Demonstrates the 5-tier intensity system with clear layer roles. Each layer group can be toggled independently for gameplay-responsive music.",
+      "warnings": [
+        "All layers must be tested together for gain staging — remove layers until the full-combat state doesn't clip",
+        "Some layers may need frequency adjustments when combined"
+      ],
+      "source": {
+        "sourceType": "authored",
+        "title": "Game Combat Starter",
+        "confidence": "high"
+      }
+    }
+  ],
+  "mutationOperators": [
+    "rhythm-op-01",
+    "rhythm-op-02",
+    "rhythm-op-04",
+    "rhythm-op-06",
+    "timbre-op-01",
+    "timbre-op-03",
+    "timbre-op-04",
+    "structure-op-03",
+    "structure-op-05",
+    "structure-op-06",
+    "space-op-01",
+    "space-op-03"
+  ],
+  "sourceNotes": [
+    {
+      "sourceType": "authored",
+      "title": "Game Combat Style Definition",
+      "note": "Based on adaptive game music principles from titles like DOOM (2016), Hollow Knight, Hades, and Metal Gear Solid — emphasizing vertical layering, intensity gating, and hybrid orchestral/electronic palettes.",
+      "confidence": "high"
+    }
+  ],
+  "userFavorites": [],
+  "maintenance": {
+    "lastUpdated": "2026-07-01",
+    "lastValidated": "2026-07-01",
+    "validationNotes": "Initial seed data for MVP.",
+    "status": "draft"
+  },
+  "styleId": "game_combat"
+}

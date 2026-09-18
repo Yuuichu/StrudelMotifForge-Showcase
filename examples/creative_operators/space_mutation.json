@@ -1,0 +1,38 @@
+[
+  {
+    "id": "space-op-01", "name": "Reverb Sculpting", "category": "space",
+    "description": "Dramatically change the reverb character — size, decay time, wet/dry balance. Transform a dry, close sound into a vast, distant one (or vice versa).",
+    "suitableForStyles": ["ambient_techno", "dark_techno", "ambient", "jungle"],
+    "usefulWhen": "Changing the perceived space, shifting between intimate and vast, creating spatial drama",
+    "risk": 2, "repair": "Change reverb on at most 2 layers simultaneously. Changing reverb on all layers at once sounds like a production error rather than a creative choice.",
+    "intensityRange": [2, 4],
+    "strudelHints": [".room('<0.2 0.9 0.2>').slow(16) — dramatic space sweep", "Increase reverb on foreground elements, decrease on background for a spatial inversion"]
+  },
+  {
+    "id": "space-op-02", "name": "Space as Lead", "category": "space",
+    "description": "Make the spatial/reverb tail the primary musical element. The direct sound becomes secondary — the space itself is what the listener follows.",
+    "suitableForStyles": ["ambient_techno", "ambient", "jungle"],
+    "usefulWhen": "Creating an extreme spatial focus, making the room the main instrument",
+    "risk": 3, "repair": "Keep one element dry as a spatial reference point. Without a 'here', there is no 'there'.",
+    "intensityRange": [3, 5],
+    "strudelHints": [".gain(0.05).room(0.95).delay(0.8) — the source is barely audible, the space is everything", "Use very long reverb tails that overlap between events"]
+  },
+  {
+    "id": "space-op-03", "name": "Dry/Wet Morph", "category": "space",
+    "description": "Gradually transition a sound from completely dry to completely wet (reverb only). The sound dissolves into the space.",
+    "suitableForStyles": ["ambient_techno", "ambient", "dark_techno", "game_combat"],
+    "usefulWhen": "Fading a layer out in a creative way, transitioning between spatial states",
+    "risk": 1, "repair": "The transition should take at least 4 cycles. Instant wet/dry changes are jarring unless used as a deliberate effect.",
+    "intensityRange": [1, 3],
+    "strudelHints": [".room('<0 0.3 0.6 0.9>').gain('<0.3 0.2 0.1 0.05>').slow(8) — dissolving into space", "Layer dry and wet versions, crossfading between them"]
+  },
+  {
+    "id": "space-op-04", "name": "Panorama Drift", "category": "space",
+    "description": "Slowly move sounds across the stereo field over many cycles. A sound that slowly travels from left to right (or circles the listener) creates hypnotic spatial movement.",
+    "suitableForStyles": ["ambient_techno", "ambient", "jungle"],
+    "usefulWhen": "Adding spatial movement to static elements, creating a sense of motion without rhythmic change",
+    "risk": 2, "repair": "Ensure mono compatibility — the sound should still be audible in mono. Extreme panning with phase effects can cancel completely in mono.",
+    "intensityRange": [1, 3],
+    "strudelHints": ["Use .jux() for stereo width", "Layer a centered version at low gain for mono compatibility", "Slow pan movement: one element drifting over 16+ cycles"]
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "structure-op-01", "name": "Reverse Structure", "category": "structure",
+    "description": "Play the arrangement in reverse — what was the intro becomes the outro, the build becomes a deconstruction.",
+    "suitableForStyles": ["ambient_techno", "ambient"],
+    "usefulWhen": "Creating a palindrome-like piece, or the current arrangement feels too predictable in its direction",
+    "risk": 4, "repair": "Not every element should reverse. Keep the harmonic foundation (drone/bass) moving forward while reversing the textural layers for a more subtle effect.",
+    "intensityRange": [4, 5],
+    "strudelHints": ["Reverse the order of layer entry/exit", "Invert the energy curve: start at peak density and gradually strip layers away"]
+  },
+  {
+    "id": "structure-op-02", "name": "Break Tease", "category": "structure",
+    "description": "Preview a section before it arrives — play tiny fragments of what's coming, heavily filtered and quiet. The listener anticipates the full section.",
+    "suitableForStyles": ["jungle", "dark_techno", "game_combat"],
+    "usefulWhen": "Building anticipation, creating a sense of something approaching",
+    "risk": 2, "repair": "Keep teases very short (1-2 hits) and sparse (every 4-8 cycles). Too many teases destroy the anticipation.",
+    "intensityRange": [1, 3],
+    "strudelHints": ["Play the upcoming layer at .gain(0.1).lpf(500).sometimesBy(0.2, gain(0.3))", "Use a single hit from the upcoming pattern as a 'pre-echo'"]
+  },
+  {
+    "id": "structure-op-03", "name": "False Drop", "category": "structure",
+    "description": "Build tension and expectation, then pull everything back instead of delivering. The anticlimax becomes more powerful than the climax would have been.",
+    "suitableForStyles": ["ambient_techno", "dark_techno", "jungle"],
+    "usefulWhen": "Subverting expectations, creating memorable structural moments, avoiding predictable builds",
+    "risk": 4, "repair": "Use only once per piece. The first false drop is surprising; the second is annoying. Leave enough space after the fake-out for the real climax later.",
+    "intensityRange": [3, 5],
+    "strudelHints": ["Build all layers over 4 cycles, then mute everything except drone on the 'drop' cycle", "Roll off high frequencies while building — the release reveals that nothing was actually building at all"]
+  },
+  {
+    "id": "structure-op-04", "name": "Asymmetry Injection", "category": "structure",
+    "description": "Break symmetrical phrase lengths by introducing odd-length sections. Instead of 4+4+4+4, try 3+5+7+3.",
+    "suitableForStyles": ["ambient_techno", "dark_techno", "jungle", "ambient"],
+    "usefulWhen": "The structure feels too predictable, too 'grid-like'",
+    "risk": 3, "repair": "Keep one element (usually the drone or harmonic foundation) at a constant length as an anchor. The asymmetry should feel intentional, not like a mistake.",
+    "intensityRange": [2, 4],
+    "strudelHints": ["Use struct() with patterns of different lengths", "Add/remove layers on non-standard cycle numbers (3, 5, 7, 11, 13)"]
+  },
+  {
+    "id": "structure-op-05", "name": "Subtraction Architecture", "category": "structure",
+    "description": "Instead of adding elements to build intensity, remove them. Strip the pattern down to its essence. What remains becomes more powerful through absence.",
+    "suitableForStyles": ["ambient_techno", "dark_techno", "ambient", "game_combat"],
+    "usefulWhen": "Creating contrast after a dense section, revealing the skeletal structure, creating tension through absence",
+    "risk": 2, "repair": "Keep at least 2 elements in the stripped version so it doesn't become silence. The stripped pattern should still be musically coherent.",
+    "intensityRange": [2, 4],
+    "strudelHints": ["Remove layers in order: noise → hi percussion → mid percussion → synth → leave only kick + drone", "Increase reverb on remaining elements to fill the space left by removed layers"]
+  },
+  {
+    "id": "structure-op-06", "name": "Micro-Variation Architecture", "category": "structure",
+    "description": "Keep the macro-structure constant while introducing tiny changes every cycle. The piece appears static on the surface but is constantly shifting in detail.",
+    "suitableForStyles": ["ambient_techno", "dark_techno", "jungle", "ambient"],
+    "usefulWhen": "Loop-based music that needs to stay interesting over long durations",
+    "risk": 1, "repair": "Don't vary the core elements (kick, primary rhythm). Only vary secondary elements (percussion details, filter settings, noise layers).",
+    "intensityRange": [1, 3],
+    "strudelHints": ["Use .sometimesBy() on secondary percussion", ".lpf() with very slow, non-repeating modulation", "Rotate which secondary elements are active"]
+  },
+  {
+    "id": "structure-op-07", "name": "Silence Sculpting", "category": "structure",
+    "description": "Use silence (or near-silence) as a structural element. Strategic gaps of 1-4 cycles where most or all elements drop out.",
+    "suitableForStyles": ["ambient_techno", "ambient", "dark_techno"],
+    "usefulWhen": "Creating dramatic tension, marking structural boundaries, giving the listener a moment of reflection",
+    "risk": 4, "repair": "Keep one element (very quiet drone or reverb tail) during the silence so it doesn't feel like the music stopped. Pure digital silence is jarring.",
+    "intensityRange": [3, 5],
+    "strudelHints": ["Mute all layers except a very quiet drone for 2-4 cycles", "Keep the reverb tail of the last hit as the only sound during the gap"]
+  },
+  {
+    "id": "structure-op-08", "name": "Accumulation Pattern", "category": "structure",
+    "description": "Start with a single element. Add one new element every N cycles. Each addition transforms the character of the whole. The piece 'grows' rather than 'changes'.",
+    "suitableForStyles": ["ambient_techno", "ambient", "dark_techno", "game_combat"],
+    "usefulWhen": "Opening a piece, building toward a dense section, creating a sense of organic growth",
+    "risk": 1, "repair": "Space additions at least 4 cycles apart. Each new layer should be introduced at low gain and gradually brought up over 2-4 cycles.",
+    "intensityRange": [1, 4],
+    "strudelHints": ["Start with drone only", "Add layers at intervals with .gain('<0 0.5 1>').slow(4) fade-in", "Order: drone → bass → texture → percussion → detail → full density"]
+  }
+]
