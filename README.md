@@ -2,7 +2,6 @@
 
 A browser-based workbench for **layered Strudel pattern composition**: turn a short creative brief into concepts, layered live-coding patterns, controlled mutations and explanations — with a sandbox that treats generated code as untrusted.
 
-
 ## Why I Built This
 
 Live-coding music in Strudel is fast and expressive, but it has a workflow gap: a pattern is a single text artefact. There is no notion of *layers* you can mutate independently, no record of which branch of an idea you were on, and no guardrail when an LLM is asked to "make it darker" — the model rewrites the whole pattern, changes things you liked, and you find out at playback time.
@@ -57,13 +56,6 @@ Layer-marked Strudel pattern
 - **Audio-calibrated style knowledge.** Style metadata is not taken on faith: measured BPM that deviates by more than **15** from the style's claimed tempo triggers a rewrite using measured p10/p90/mean, and timbre claims are cross-checked against spectral centroid (a "dark" style measuring a **4419 Hz** centroid is flagged). Each style scores out of **10** (one point lost per discrepancy); 8+ passes.
 - **Scale, measured from source:** 117 TypeScript/TSX files in `src/`, 9,306 lines.
 
-## Demo
-
-A live demo needs a running dev server, which this showcase does not include.
-
-Selected source is in `selected-code/` (pattern validator, mutation orchestrator, role mapper, sandbox host). Style knowledge data is in `examples/` for inspection:
-`examples/game_combat.json` (a game-combat style library) and `examples/creative_operators/*.json` (the operator catalogue).
-
 ## Architecture
 
 `docs/architecture.md` covers the app and module layout; `docs/safety-model.md` documents the sandbox, validator and server hardening; `docs/style-knowledge.md` explains the audio-feature calibration loop; `docs/mutation-operators.md` catalogues the operator system.
@@ -86,7 +78,7 @@ Sole author: application architecture, pattern generation and validation, the mu
 
 This is a portfolio showcase repository. The full development repository remains private.
 
-Included: the pattern validator, mutation orchestrator, role mapping and sandbox host; the operator catalogue and one style library as data; architecture, safety, calibration and operator documentation. Excluded: environment files, build output, test artefacts, the full style library, the LLM provider implementation and the e2e suite.
+Included in `selected-code/`: the pattern validator, mutation orchestrator, role mapping and sandbox host. Included as data in `examples/`: the operator catalogue and one style library. Also included: architecture, safety, calibration and operator documentation. Excluded: environment files, build output, test artefacts, the full style library, the LLM provider implementation and the e2e suite.
 
 ## Tech Stack
 
